@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "lithuania-election-results"
+version = "0.1.0"
+description = "A project to analyse the election results of the 2024 parliament election."
+authors = ["Aukstojas <jonasdabrila@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+kedro = "^0.19.10"
+pandas = "^2.2.3"
+numpy = "^2.2.1"
+requests = "^2.32.3"
+beautifulsoup4 = "^4.12.3"
+lxml = "^5.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
