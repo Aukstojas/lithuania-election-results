@@ -1,0 +1,7 @@
+
+raw_scraped_data:
+  type: pandas.JSONDataSet
+  filepath: data\01_raw\raw_scraped_data.json
+  save_args:
+    orient: "records"
+    lines: True
