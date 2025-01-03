@@ -13,8 +13,40 @@ numpy = "^2.2.1"
 requests = "^2.32.3"
 beautifulsoup4 = "^4.12.3"
 lxml = "^5.3.0"
-
+kedro-viz = "^10.1.0"
+kedro-datasets = "^6.0.0"
+pyarrow = "^18.1.0"
+fastparquet = "^2024.11.0"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = [ "setuptools",]
+build-backend = "setuptools.build_meta"
+
+[project]
+requires-python = ">=3.9"
+name = "lithuania_election_results"
+readme = "README.md"
+dynamic = [ "version",]
+dependencies = [ "ipython>=8.10", "jupyterlab>=3.0", "notebook", "kedro[jupyter]~=0.19.10", "kedro-datasets[pandas-csvdataset, pandas-exceldataset, pandas-parquetdataset, plotly-plotlydataset, plotly-jsondataset, matplotlib-matplotlibwriter]>=3.0", "kedro-viz>=6.7.0", "scikit-learn~=1.5.1", "seaborn~=0.12.1",]
+
+[project.scripts]
+lithuania-election-results = "lithuania_election_results.__main__:main"
+
+[tool.kedro]
+package_name = "lithuania_election_results"
+project_name = "lithuania-election-results"
+kedro_init_version = "0.19.10"
+tools = "['Kedro Viz']"
+example_pipeline = "False"
+source_dir = "src"
+
+[project.entry-points."kedro.hooks"]
+
+[tool.setuptools.dynamic.version]
+attr = "lithuania_election_results.__version__"
+
+[tool.setuptools.packages.find]
+where = [ "src",]
+namespaces = false
+[tool.kedro_telemetry]
+project_id = "e2be5a4f64ca4c02acebd2ef340c084a"
