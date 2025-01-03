@@ -7,8 +7,8 @@ def create_pipeline(**kwargs) -> Pipeline:
         [
             node(
                 func=scrape_node,
-                inputs="params:root_url",
-                outputs='raw_scraped_data',
+                inputs=["params:static_page_root", "params:apygarda_prefix", "params:apygarda_location", "params:apylinke_prefix"],
+                outputs=None, #'raw_scraped_data',
                 name='scrape_data'
             )
         ]

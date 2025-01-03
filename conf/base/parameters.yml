@@ -1,2 +1,10 @@
 
-root_url: "https://www.vrk.lt/2024-seimo/rezultatai?srcUrl=/rinkimai/1544/1/2150/rezultatai/lt/rezultataiDaugmVrt.html"
+
+static_page_root: https://www.vrk.lt/statiniai/puslapiai/rinkimai/1544/1/2150/rezultatai/lt/
+
+active_page_root: https://www.vrk.lt/2024-seimo/rezultatai
+
+apygarda_location: rezultataiDaugmVrt.html
+
+apygarda_prefix: rezultataiDaugmRpg_rpgId-
+apylinke_prefix: _rplId-
