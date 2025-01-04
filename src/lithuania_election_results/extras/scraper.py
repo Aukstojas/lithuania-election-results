@@ -151,7 +151,7 @@ class Scraper:
         df.columns = ['VRK_nr', 'party_name', 'total_apylinke_votes']
         df = df[~df['VRK_nr'].isna()]
         df['VRK_nr'] = df['VRK_nr'].astype(int)
-        df = df.set_index(['VRK_nr']).sort_index()
+        #df = df.set_index(['VRK_nr']).sort_index()
         return df
     
     def get_pirm_votes_and_party_name(self, url: str, party_names: list):
@@ -201,6 +201,7 @@ class Scraper:
         
         all_apylinke_links = self.get_apylinke_links()
         all_total_pirm_votes_by_apylinke = {}
+        records = []
         
         total_apylinkes = 0
         for key in all_apylinke_links:
@@ -236,13 +237,26 @@ class Scraper:
                         raise ValueError("total number of votes calculated incorrectly for one apylinke one party")
                     
                     final_apylinke_table.loc[final_apylinke_table['party_name'] == party_name, 'total_pirm_votes'] = total_pirm_votes
-                
-                all_total_pirm_votes_by_apylinke[apygarda_link, apylinke_link] = final_apylinke_table
+
+                # Add data to records
+                for _, row in final_apylinke_table.iterrows():
+                    records.append({
+                        'apygarda': apygarda_link,
+                        'apylinke': apylinke_link,
+                        'VRK_nr': row['VRK_nr'],
+                        'party_name': row['party_name'],
+                        'total_apylinke_votes': row['total_apylinke_votes'],
+                        'total_pirm_votes': row['total_pirm_votes']
+                    })
+
                 # Update progress
                 processed += 1
                 percent = processed/total_apylinkes
                 if percent > log_step:
-                    self.logger.info(f"Progress: {percent:.2f}% of apylinkes processed.")
+                    self.logger.info(f"Progress: {percent*100:.2f}% of apylinkes processed.")
                     log_step += log_step
-             
-        return all_total_pirm_votes_by_apylinke
+                if processed > 50: break
+            if processed > 50: break
+            
+        df = pd.DataFrame(records)
+        return df
