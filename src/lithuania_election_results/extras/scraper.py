@@ -208,7 +208,7 @@ class Scraper:
             total_apylinkes += len(all_apylinke_links[key])
         
         processed = 0
-        log_step = 0.01
+        log_step = 0.05
         
         for apygarda_link in list(all_apylinke_links.keys()):
             for apylinke_link in all_apylinke_links[apygarda_link]:
@@ -255,8 +255,6 @@ class Scraper:
                 if percent > log_step:
                     self.logger.info(f"Progress: {percent*100:.2f}% of apylinkes processed.")
                     log_step += log_step
-                if processed > 50: break
-            if processed > 50: break
             
         df = pd.DataFrame(records)
         return df
