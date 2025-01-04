@@ -1,4 +1,4 @@
 
-raw_apylinke_links:
+all_total_pirm_votes_by_apylinke:
   type: pickle.PickleDataset
   filepath: data\01_raw\raw_scraped_data.pkl

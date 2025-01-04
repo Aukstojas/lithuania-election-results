@@ -8,7 +8,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=scrape_node,
                 inputs=["params:static_page_root", "params:apygarda_prefix", "params:apygarda_location", "params:apylinke_prefix","params:apylinke_pirm_prefix"],
-                outputs='raw_apylinke_links',
+                outputs='all_total_pirm_votes_by_apylinke',
                 name='scrape_data'
             )
         ]
