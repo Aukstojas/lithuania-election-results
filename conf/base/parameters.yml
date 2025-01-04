@@ -7,4 +7,5 @@ active_page_root: https://www.vrk.lt/2024-seimo/rezultatai
 apygarda_location: rezultataiDaugmVrt.html
 
 apygarda_prefix: rezultataiDaugmRpg_rpgId-
-apylinke_prefix: _rplId-
+apylinke_prefix: [rezultataiDaugmRpl_rpgId-, _rplId-]
+apylinke_pirm_prefix: [rezultataiDaugmPartPirmRpl_rpgId-, _rplId-, _rorgId-]
