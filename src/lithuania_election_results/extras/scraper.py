@@ -16,7 +16,7 @@ class Scraper:
         self.apygarda_location = apygarda_location
         self.apylinke_prefix = apylinke_prefix
         
-    def get_links_containing_phrase_from_url(self, url, phrase = None):
+    def get_links_containing_phrase_from_url(self, url, phrase = None, logger = False):
         """
         1. Access the site (start_url)
         2. Find all possible links (anchor tags)
@@ -24,7 +24,7 @@ class Scraper:
         4. Return the filtered list of absolute URLs
         """
 
-        print(f"Scraping {url}.")
+        if logger: print(f"Scraping {url}.")
         response = requests.get(url)
         response.raise_for_status()
 
@@ -51,7 +51,7 @@ class Scraper:
         # Remove duplicates or do further post-processing if needed
         unique_urls = list(set(valid_urls))
 
-        print(f"Found {len(unique_urls)} links containing prefix {phrase}")
+        if logger: print(f"Found {len(unique_urls)} links containing prefix {phrase}")
         
         return unique_urls
     
@@ -60,22 +60,33 @@ class Scraper:
             list[i] = re.sub(r'^.*/', '', item)
         return list
     
-    def main(self):
+    def get_apylinke_links(self):
 
         # Get all apygarda links:
-        apygarda_links_srcUrl = self.get_links_containing_phrase_from_url(self.static_page_root + self.apygarda_location, self.apygarda_prefix)
+        apygarda_links_srcUrl = self.get_links_containing_phrase_from_url(self.static_page_root + self.apygarda_location, self.apygarda_prefix, logger = True)
         
         # Trim links to leave only the correct location identifying ends
         apygarda_links = self.remove_all_before_last_slash(apygarda_links_srcUrl)
         
-        all_apylinke_links = []
+        all_apylinke_links = {}
         
         # Get all apylinke links:
         for apygarda in apygarda_links:
+            
             apylinke_links_srcUrl = self.get_links_containing_phrase_from_url(self.static_page_root + apygarda, self.apylinke_prefix)
             apylinke_links = self.remove_all_before_last_slash(apylinke_links_srcUrl)
 
-            #all_apylinke_links.append(apylinke_links)
-            #all_apylinke_links = all_apylinke_links + apylinke_links
+            all_apylinke_links[apygarda] = apylinke_links
+
+        if True:
+            len_apylinkes = 0
             
-        print(len(all_apylinke_links))
+            for key in all_apylinke_links:
+                len_apylinkes += len(all_apylinke_links[key])
+                
+            print(f"In total {len_apylinkes} apylinke links found")
+            
+        return all_apylinke_links
+
+    def main(self):
+        return self.get_apylinke_links()

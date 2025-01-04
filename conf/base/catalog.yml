@@ -1,4 +1,4 @@
 
-raw_scraped_data:
-  type: pandas.ParquetDataset
-  filepath: data\01_raw\raw_scraped_data.parquet
+raw_apylinke_links:
+  type: pickle.PickleDataset
+  filepath: data\01_raw\raw_scraped_data.pkl
