@@ -8,6 +8,8 @@ import pandas as pd
 import numpy as np
 import re
 from io import StringIO
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 logger = logging.getLogger(__name__)
 
@@ -20,6 +22,10 @@ class Scraper:
         self.apylinke_pirm_prefix = apylinke_pirm_prefix
         self.session = requests.Session()
         self.logger = logging.getLogger(__name__)
+        retry = Retry(total=5, backoff_factor=1, status_forcelist=[502, 503, 504, 524])
+        adapter = HTTPAdapter(max_retries=retry)
+        self.session.mount('http://', adapter)
+        self.session.mount('https://', adapter)
     
     def contains_phrases(self, href: str, phrase) -> bool:
         """
@@ -208,6 +214,7 @@ class Scraper:
             total_apylinkes += len(all_apylinke_links[key])
         
         processed = 0
+        log_step = 0.1
         
         for apygarda_link in list(all_apylinke_links.keys()):
             for apylinke_link in all_apylinke_links[apygarda_link]:
@@ -250,7 +257,6 @@ class Scraper:
 
                 # Update progress
                 processed += 1
-                log_step = 0.1
                 
                 percent = processed/total_apylinkes
                 if percent > log_step:

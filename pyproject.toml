@@ -18,6 +18,9 @@ kedro-datasets = "^6.0.0"
 pyarrow = "^18.1.0"
 fastparquet = "^2024.11.0"
 matplotlib = "^3.10.0"
+statsmodels = "^0.14.4"
+scikit-learn = "^1.6.0"
+seaborn = "^0.13.2"
 
 [build-system]
 requires = [ "setuptools",]
