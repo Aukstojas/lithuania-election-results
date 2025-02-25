@@ -4,32 +4,19 @@
 
 ## Overview
 
-This is your new Kedro project with Kedro-Viz setup, which was generated using `kedro 0.19.10`.
-
-Take a look at the [Kedro documentation](https://docs.kedro.org) to get started.
-
-## Rules and guidelines
-
-In order to get the best out of the template:
-
-* Don't remove any lines from the `.gitignore` file we provide
-* Make sure your results can be reproduced by following a [data engineering convention](https://docs.kedro.org/en/stable/faq/faq.html#what-is-data-engineering-convention)
-* Don't commit data to your repository
-* Don't commit any credentials or your local configuration to your repository. Keep all your credentials and local configuration in `conf/local/`
+This is a project that analyses the results of the 2024 Lithuanian parliamentary election.
 
 ## How to install dependencies
 
-Declare any dependencies in `requirements.txt` for `pip` installation.
-
-To install them, run:
+To install, run:
 
 ```
-pip install -r requirements.txt
+poetry install
 ```
-
+<!-- 
 ## How to run your Kedro pipeline
 
-You can run your Kedro project with:
+You can run the Kedro project with:
 
 ```
 kedro run
@@ -98,4 +85,4 @@ To automatically strip out all output cell contents before committing to `git`, 
 [Further information about using notebooks for experiments within Kedro projects](https://docs.kedro.org/en/develop/notebooks_and_ipython/kedro_and_notebooks.html).
 ## Package your Kedro project
 
-[Further information about building project documentation and packaging your project](https://docs.kedro.org/en/stable/tutorial/package_a_project.html).
+[Further information about building project documentation and packaging your project](https://docs.kedro.org/en/stable/tutorial/package_a_project.html). -->
