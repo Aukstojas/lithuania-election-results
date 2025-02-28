@@ -6,6 +6,10 @@
 
 This is a project that analyses the results of the 2024 Lithuanian parliamentary election.
 
+Scrapper: src\lithuania_election_results\extras\scraper.py
+
+Analysis: notebooks\analysis.ipynb
+
 ## How to install dependencies
 
 To install, run:
